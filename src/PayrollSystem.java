@@ -64,7 +64,6 @@ public class PayrollSystem {
             System.out.println("No valid hours worked.");
         }
     }
-
     // calculation
     public double weeklySalary() {
         double weeklySalary;
