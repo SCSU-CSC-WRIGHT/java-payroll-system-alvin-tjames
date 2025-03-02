@@ -74,7 +74,7 @@ public class PayrollSystem {
             double baseSalary = hourlyWage * 40;
             double overtimeRate = (hoursWorked - 40) * (hourlyWage * 1.5);
             weeklySalary = baseSalary + overtimeRate;
-            
+
         }
         return weeklySalary;
     }
