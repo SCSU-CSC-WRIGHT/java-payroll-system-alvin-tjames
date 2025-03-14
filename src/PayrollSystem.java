@@ -64,18 +64,18 @@ public class PayrollSystem {
             System.out.println("No valid hours worked.");
         }
     }
-    // calculation
-    public double weeklySalary() {
-        double weeklySalary;
-        if (hoursWorked <= 40) {
-            weeklySalary = hourlyWage * hoursWorked;
-        } else {
-            double baseSalary = hourlyWage * 40;
-            double overtimeRate = (hoursWorked - 40) * (hourlyWage * 1.5);
-            weeklySalary = baseSalary + overtimeRate;
-
+    // calculations
+    private double overtimePay() {
+        if (hoursWorked > 40) {
+            double overtimeHours = Math.max(0, hoursWorked - 40);
+            return overtimeHours * (hourlyWage * 1.5);
         }
-        return weeklySalary;
+        return 0.0;
+    }
+
+    public double weeklySalary() {
+        double regularPay = Math.min(hoursWorked, 40) * hourlyWage; // regular pay for first 40 hours
+        return regularPay + overtimePay();
     }
 
     // display how we want
@@ -83,6 +83,7 @@ public class PayrollSystem {
     public String toString() {
         return "Employee{name='" + name + "', employeeId=" + employeeId +
                 ", department='" + department + "', hourlyWage=" + hourlyWage +
-                ", hoursWorked=" + hoursWorked + ", weeklySalary=" + weeklySalary() + "}";
+                ", hoursWorked=" + hoursWorked + ", overtimePay=" + overtimePay() +
+                ", weeklySalary=" + weeklySalary() + "}";
     }
 }
